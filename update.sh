@@ -25,12 +25,12 @@ declare -A dictionary=(
 cp "$original" "$temp"
 # Iterate over the dictionary and apply substitutions
 for key in "${!dictionary[@]}"; do
-    awk -v key="$key" -v val="${dictionary[$key]}" '{gsub(key, val)} 1' "$temp" > "$temp.tmp"
+    awk -v key="$key" -v val="${dictionary[$key]}" -r '{gsub(/'"$key"'"/, val)} 1' "$temp" > "$temp.tmp"
     mv "$temp.tmp" "$temp"
 done
 
 if diff -q "$temp" "$final" >/dev/null; then
-    #rm "$temp"
+    rm "$temp"
     zenity --warning --text="No changes detected." --timeout=1 --no-wrap --title="$title"
     exit 0
 fi
