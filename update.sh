@@ -22,9 +22,16 @@ declare -A dictionary=(
     ["[[Phonopy]]"]="[Phonopy](https://phonopy.github.io/phonopy/)"
 )
 
+cp "$original" "$temp"
+
+# Iterate over the dictionary and apply substitutions
 for key in "${!dictionary[@]}"; do
-    sed "s/$key/${dictionary[$key]}/g" "$original" > "$temp"
+    sed -i "s/$key/${dictionary[$key]}/g" "$temp"
 done
+
+if [ ! -f "$temp" ] || [ $(stat -c %s "$temp") -eq 0 ]; then
+    echo "Temporary file is empty or doesn't exist."
+fi
 
 if diff -q "$temp" "$final" >/dev/null; then
     rm "$temp"
