@@ -26,7 +26,7 @@ cp "$original" "$temp"
 
 # Iterate over the dictionary and apply substitutions
 for key in "${!dictionary[@]}"; do
-    sed -i "s/$key/${dictionary[$key]}/g" "$temp"
+    sed -i "$key/${dictionary[$key]}/g" "$temp"
 done
 
 if [ ! -f "$temp" ] || [ $(stat -c %s "$temp") -eq 0 ]; then
