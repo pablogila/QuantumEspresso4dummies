@@ -6,7 +6,6 @@ original="/home/pablo/Documents/obsidian/Work ⚛️/Instruments/Quantum ESPRESS
 final="README.md"
 title="QuantumEspresso4dummies update"
 date=$(date +"%Y-%m-%d %H:%M")
-temp="TEMP.md"
 # Dict to clean Obsidian wikilinks
 declare -A dictionary=(
     ["[[CASTEP]]"]="[CASTEP](http://www.castep.org/)"
@@ -25,12 +24,15 @@ declare -A dictionary=(
 cp "$original" "$temp"
 # Iterate over the dictionary and apply substitutions
 for key in "${!dictionary[@]}"; do
-    awk -v key="$key" -v val="${dictionary[$key]}" -r '{gsub(/'"$key"'"/, val)} 1' "$temp" > "$temp.tmp"
+    # Escape special characters in the key and value
+    escaped_key=$(echo "$key" | sed 's/[\[\]]/\\&/g')
+    escaped_val=$(echo "${dictionary[$key]}" | sed 's/[\[\]]/\\&/g')
+
+    awk -v key="$escaped_key" -v val="$escaped_val" '{gsub(key, val)} 1' "$temp" > "$temp.tmp"
     mv "$temp.tmp" "$temp"
 done
 
 if diff -q "$temp" "$final" >/dev/null; then
-    rm "$temp"
     zenity --warning --text="No changes detected." --timeout=1 --no-wrap --title="$title"
     exit 0
 fi
