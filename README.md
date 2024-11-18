@@ -23,9 +23,9 @@ Sometimes the slurm output may indicate floating point exceptions as below, whic
 NOTE: The following floating-point exceptions are signalling: IEEE_UNDERFLOW_FLAG IEEE_DENORMAL
 ```
 
-isotopes in the [ATOMIC_SPECIES](https://www.quantum-espresso.org/Doc/INPUT_PW.html#ATOMIC_SPECIES) must start by the actual letter from the species, such as H2; It can not be D.
+isotopes in the [ATOMIC_SPECIEhttps://jp-minerals.org/vesta/en/(https://www.quantum-espresso.org/Doc/INPUT_PW.html#ATOMIC_SPECIES) must start by the actual letter from the species, such as H2; It can not be D.
 
-To export to a .CIF file after the calculation, we can use [[ASE#Exporting outputs|ASE]]. The graphical option would be to open the output on XCrySDen and save it as `.xsf`, then open it on [[VESTA]] and save it as `.cif`. This last option seems to preserve a bit better the numerical precision, since both [[ASE]] and [[VESTA]] cut some decimals for some weird reason.
+To export to a .CIF file after the calculation, we can use [[ASE#Exporting outputs|AShttps://jp-minerals.org/vesta/en/]. The graphical option would be to open the output on XCrySDen and save it as `.xsf`, then open it on [[VESThttps://jp-minerals.org/vesta/en/] and save it as `.cif`. This last option seems to preserve a bit better the numerical precision, since both [[AShttps://jp-minerals.org/vesta/en/] and [[VESThttps://jp-minerals.org/vesta/en/] cut some decimals for some weird reason.
 
 ## Crystal structure
 
@@ -92,11 +92,11 @@ Quantum ESPRESSO uses pseudos in UPF format, and can be obtained from:
 - [Quantum ESPRESSO documentation](https://www.quantum-espresso.org/documentation/)
 
 ## References
-- [[DFT]]
+- [[DFhttps://jp-minerals.org/vesta/en/]
 - [StackExchange - How to know optimal K-points grid values for good DFT calculation?](https://mattermodeling.stackexchange.com/questions/2347/how-to-know-optimal-k-points-grid-values-for-good-dft-calculation)
 - [Quantum Espresso Walkthrough](https://courses.engr.illinois.edu/mse404ela/sp2021/6.DFT-walkthrough.html)
 - [Tutorial on IR and Raman spectra with Quantum Espresso](https://blog.larrucea.eu/compute-ir-raman-spectra-qe/)
-- [StackExchange - Fixing angles and/or distances in QE](https://mattermodeling.stackexchange.com/questions/7046/how-do-i-relax-only-the-in-plane-component-of-the-unit-cell)
+- [StackExchange - Fixing angles and/or distances in Qhttps://jp-minerals.org/vesta/en/(https://mattermodeling.stackexchange.com/questions/7046/how-do-i-relax-only-the-in-plane-component-of-the-unit-cell)
 
 ## Troubleshooting
 
