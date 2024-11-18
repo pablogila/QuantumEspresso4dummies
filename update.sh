@@ -21,24 +21,12 @@ declare -A dictionary=(
     ["[[Phonopy]]"]="[Phonopy](https://phonopy.github.io/phonopy/)"
 )
 
-cp "$original" "$temp"
-# Iterate over the dictionary and apply substitutions
-for key in "${!dictionary[@]}"; do
-    # Escape special characters in the key and value with double quotes
-    escaped_key=$(echo "$key" | sed 's/[\[\]]/\\"&/g')
-    escaped_val=$(echo "${dictionary[$key]}" | sed 's/[\[\]]/\\"&/g')
-    # Use double quotes around key and value in awk
-    awk -v key="$escaped_key" -v val="$escaped_val" 'BEGIN { RS = ORS = "" } { gsub(key, val) } 1' "$temp" > "$temp.tmp"
-    mv "$temp.tmp" "$temp"
-done
-
-if diff -q "$temp" "$final" >/dev/null; then
+if diff -q "$original" "$final" >/dev/null; then
     zenity --warning --text="No changes detected." --timeout=1 --no-wrap --title="$title"
     exit 0
 fi
 
-cp "$temp" "$final"
-rm "$temp"
+cp "$original" "$final"
 
 (zenity --info --text="README.md updated. \nPushing to GitHub..." --timeout=1 --no-wrap --title="$title") &
 
