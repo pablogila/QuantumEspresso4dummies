@@ -24,11 +24,11 @@ declare -A dictionary=(
 cp "$original" "$temp"
 # Iterate over the dictionary and apply substitutions
 for key in "${!dictionary[@]}"; do
-    # Escape special characters in the key and value
-    escaped_key=$(echo "$key" | sed 's/[\[\]]/\\&/g')
-    escaped_val=$(echo "${dictionary[$key]}" | sed 's/[\[\]]/\\&/g')
-
-    awk -v key="$escaped_key" -v val="$escaped_val" '{gsub(key, val)} 1' "$temp" > "$temp.tmp"
+    # Escape special characters in the key and value with double quotes
+    escaped_key=$(echo "$key" | sed 's/[\[\]]/\\"&/g')
+    escaped_val=$(echo "${dictionary[$key]}" | sed 's/[\[\]]/\\"&/g')
+    # Use double quotes around key and value in awk
+    awk -v key="$escaped_key" -v val="$escaped_val" 'BEGIN { RS = ORS = "" } { gsub(key, val) } 1' "$temp" > "$temp.tmp"
     mv "$temp.tmp" "$temp"
 done
 
