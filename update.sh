@@ -6,20 +6,6 @@ original="/home/pablo/Documents/obsidian/Work ⚛️/Instruments/Quantum ESPRESS
 final="README.md"
 title="QuantumEspresso4dummies update"
 date=$(date +"%Y-%m-%d %H:%M")
-# Dict to clean Obsidian wikilinks
-declare -A dictionary=(
-    ["[[CASTEP]]"]="[CASTEP](http://www.castep.org/)"
-    ["[[DFT]]"]="DFT"
-    ["[[SCARF]]"]="SCARF"
-    ["[[Atlas & Hyperion]]"]="Atlas & Hyperion"
-    ["[[cif2cell]]"]="https://github.com/torbjornbjorkman/cif2cell"
-    ["[[ASE]]"]="https://wiki.fysik.dtu.dk/ase/index.html"
-    ["[[VESTA]]"]="https://jp-minerals.org/vesta/en/"
-    ["[[naming convention]]"]="naming convention"
-    ["[[SLURM]]"]="[SLURM](https://slurm.schedmd.com/documentation.html)"
-    ["[[CP2K]]"]="[CP2K](https://www.cp2k.org/about)"
-    ["[[Phonopy]]"]="[Phonopy](https://phonopy.github.io/phonopy/)"
-)
 
 if diff -q "$original" "$final" >/dev/null; then
     zenity --warning --text="No changes detected." --timeout=1 --no-wrap --title="$title"
